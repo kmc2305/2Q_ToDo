@@ -175,7 +175,7 @@
 
 body.dark {
   background-color: #5581B3;
-  color: #f0f0f0;
+  color: #000000;
 }
 
 body.dark .main-card {
@@ -363,7 +363,7 @@ body.dark .star.selected {
       // ⭐ ダークモードの状態をlocalStorageから読み込み
       if (localStorage.getItem("darkMode") === "true") {
         document.body.classList.add("dark");
-        document.getElementById("toggleMode").src = "weather_night.png";
+        document.getElementById("toggleMode").src = "moon_lightyellow.png";
       }
   
       // 星クリックイベント
