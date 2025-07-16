@@ -387,37 +387,44 @@ body.dark .star.selected {
     }
   
     function addTodo() {
-      const title = document.getElementById("titleInput").value;
-      const airDate = document.getElementById("airDate").value;
-      const status = document.getElementById("status").value;
-  
-      if (!title) {
-        alert("タイトルを入力してください");
-        return;
-      }
-  
-      const container = document.createElement("div");
-      container.className = "todo-item";
-      container.innerHTML = `
-        <strong>${title}</strong><br>
-        放送日：${airDate || 'yyyy/mm/dd'}<br>
-        評価：${"★".repeat(selectedRating)}${"☆".repeat(3 - selectedRating)}<br>
-        状態：<span class="status-text">${status}</span><br>
-        <button onclick="toggleStatus(this)">ステータス切替</button>
-        <button onclick="deleteTodo(this)">削除</button>
-      `;
-  
-      document.getElementById("todoList").appendChild(container);
-      saveTodos();
-  
-      // 入力欄リセット
-      document.getElementById("detailForm").style.display = "none";
-      document.getElementById("titleInput").value = "";
-      document.getElementById("airDate").value = "";
-      document.getElementById("status").value = "未視聴";
-      selectedRating = 0;
-      document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
-    }
+  const title = document.getElementById("titleInput").value;
+  const airDate = document.getElementById("airDate").value;
+  const status = document.getElementById("status").value;
+
+  if (!title) {
+    alert("タイトルを入力してください");
+    return;
+  }
+
+  if (!airDate) {
+    alert("放送日を入力してください");
+    return;
+  }
+
+  // ここから下は元のままでOK
+  const container = document.createElement("div");
+  container.className = "todo-item";
+  container.innerHTML = `
+    <strong>${title}</strong><br>
+    放送日：${airDate}<br>
+    評価：${"★".repeat(selectedRating)}${"☆".repeat(3 - selectedRating)}<br>
+    状態：<span class="status-text">${status}</span><br>
+    <button onclick="toggleStatus(this)">ステータス切替</button>
+    <button onclick="deleteTodo(this)">削除</button>
+  `;
+
+  document.getElementById("todoList").appendChild(container);
+  saveTodos();
+
+  // 入力欄リセット
+  document.getElementById("detailForm").style.display = "none";
+  document.getElementById("titleInput").value = "";
+  document.getElementById("airDate").value = "";
+  document.getElementById("status").value = "未視聴";
+  selectedRating = 0;
+  document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
+}
+
   
     function addTodoFromStorage(todo) {
       const container = document.createElement("div");
